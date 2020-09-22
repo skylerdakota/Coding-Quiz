@@ -1,0 +1,36 @@
+.container {
+    padding-top: 20px;
+    margin: 0 auto;
+    width: 80%;
+    outline: none;
+  }
+
+.btn {
+    background-color: #79b2da;
+    text-decoration-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 20px 40px 20px 0;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+input {
+    background: none;
+    color: rgb(140, 140, 140);
+    font-size: 18px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 50%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid lightgrey;  
+  }
+  
+  input:focus {
+    outline: none;
+  }
+
+.navbar-brand {
+    font-size: 12px
+  }
