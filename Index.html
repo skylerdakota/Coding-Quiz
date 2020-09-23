@@ -16,52 +16,87 @@
 
 <body>
     <!-- Site header to hold timer-->
-   <header>
+    <header>
 
-    <!-- Start sticky Navbar -->
-   <nav class="navbar sticky-top navbar-light font-weight-light" style="background-color: #79b2da">
-       <a class="navbar-brand" href="scores.html">View High Scores</a>
-       <a class="navbar-brand" href="#" id="timerLocation">Time:     </a>
-   </nav>
-    <!-- Main Page Content -->
-    <main>
-        <div class="container">
-            <div class="row" id="submit">
-                <div class="col-sm-10">
-                    <div class="card">
-                        <div class="card-body" id="nextquestion">
-                            <h5 class="card-title">Question:</h5>
-                            <p class="card-text question">
+        <!-- Start sticky Navbar -->
+        <nav class="navbar sticky-top navbar-light font-weight-light" style="background-color: #79b2da">
+            <a class="navbar-brand" href="scores.html">View High Scores</a>
+            <a class="navbar-brand" href="#" id="timerLocation">Time: </a>
+        </nav>
+        <!-- Main Page Content -->
+        <main>
+            <div class="container">
+                <!-- Start Page Content -->
+                <div class="row" id="start-card">
+                    <div class="col-sm-10">
+                        <div class="card text-center">
+                            <h1>Coding Quiz Challenge!</h1>
+                            <p> Try to answer the following code-related questions within the time
+                            limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
                             </p>
-                            <br><br>
-                            <a href="#" class="btn option" id="option1"></a>
-                            <br><br>
-                            <a href="#" class="btn option" id="option2"></a>
-                            <br><br>
-                            <a href="#" class="btn option" id="option3"></a>
-                            <br><br>
-                            <a href="#" class="btn option" id="option4"></a>
-                            <br><br>
-                            <input type="text" id="feedbackresponse" placeholder="Answer" />
+                        <button id="startQuizBtn">Start</button>
                         </div>
                     </div>
                 </div>
-            </div>
-    </main>
+                <!-- Quiz Page Content -->
+                <div class="row hide" id="question-card">
+                    <div class="col-sm-10">
+                        <div class="card">
+                            <div class="card-body" id="nextquestion">
+                                <h5 class="card-title">Question:</h5>
+                                <p class="card-text question">
+                                </p>
+                                <div id="option"></div>
+                                <h5 id="feedbackresponse"></h5> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Score Page Content -->
+                <div class="row hide" id="score-card">
+                    <div class="col-sm-10">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">All done!</h5>
+                                <p class="card-text scorereport"> 
+                                </p>
+                                <input type="text" id="scorelocation"/>
+                                <a href="scores.html" class="btn" id="submitBtn">Submit</a>
+                                <h5 id="feedbackresponse"></h5> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Highscore Log Page Content -->
+                <div class="row hide" id="highscores-card">
+                    <div class="col-sm-10">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Highscores</h5>
+                                <p class="card-text scorelog">1. 
+                                </p>
+                                <!-- replace with text storage <input type="text" id="scorelocation"/> -->
+                                <a href="index.html" class="btn" id="goback">Go Back</a>
+                                <a href="#" class="btn" id="clearhighscore">Clear High Scores</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </main>
 
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="script.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
 
 
 

@@ -1,16 +1,36 @@
-.container {
-    padding-top: 20px;
+.start-card {
+    padding-top: 40px;
     margin: 0 auto;
     width: 80%;
     outline: none;
   }
 
-.btn {
+.option {
     background-color: #79b2da;
     text-decoration-color: #ffffff;
     border-radius: 5px;
     padding: 10px;
-    margin: 20px 40px 20px 0;
+    margin: 5px 10px 5px 0;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  #startQuizBtn {
+    background-color: #79b2da;
+    text-decoration-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 10px 5px 0;
+    font-size: 10px;
+    cursor: pointer;
+  }
+
+  .btn {
+    background-color: #79b2da;
+    text-decoration-color: #ffffff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 10px 5px 0;
     font-size: 10px;
     cursor: pointer;
   }
@@ -33,4 +53,8 @@ input {
 
 .navbar-brand {
     font-size: 12px
+  }
+
+  .hide {
+      display: none;
   }

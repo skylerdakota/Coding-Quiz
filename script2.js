@@ -1,8 +1,8 @@
-var goBackBttn = document.querySelector("#goback");
-var clearHighScoreBttn = document.querySelector("#clearhighscore");
+var goBackBtn = document.querySelector("#goback");
+var clearHighScoreBtn = document.querySelector("#clearhighscore");
 var scoreLocation = document.querySelector("#scorelocation");
-var startQuizBttn = document.querySelector("#startquiz");
-var submitBttn = document.querySelector("#submit");
+var startQuizBtn = document.querySelector("#startquiz");
+var submitBtn = document.querySelector("#submit");
 
 // on click event for final submission
 submitBttn.addEventListener("click", function (event) {
@@ -23,14 +23,14 @@ submitBttn.addEventListener("click", function (event) {
 });
 
 // on click event for the back button to return to index.html
-goBackBttn.addEventListener("click", function (event) {
+goBackBtn.addEventListener("click", function (event) {
     event.preventDefault();
     // change windows to the start page
     window.location.href = "index.html"
 });
 
 // on click event for clearing the high score
-clearHighScoreBttn.addEventListener("click", function (event) {
+clearHighScoreBtn.addEventListener("click", function (event) {
     event.preventDefault();
     // set variable for collected values of initial inputs
     var initials = initialsInputEl.value;
