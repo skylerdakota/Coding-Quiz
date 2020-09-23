@@ -1,22 +1,15 @@
 // Set variables to traverse the DOM and select by ID and Class
-var startQuizEl = document.querySelector("#startquiz");
 var timerLocationEl = document.querySelector("#timerlocation");
-var goBackEl = document.querySelector("#goback");
-var submitEl = document.querySelector("#submit");
-var finalSubmitEl = document.querySelector("#finalsubmit");
+var nextQuestionEl = document.querySelector("#nextquestion");
+var submitBttn = document.querySelector("#submit");
 var InitialsInputEl = document.querySelector("#initialsinput");
-var clearHighScoreEl = document.querySelector("#clearhighscore");
 var feedbackResponseEl = document.querySelector("#feedbackresponse");
 var option1El = document.querySelector("#option1");
 var option2El = document.querySelector("#option2");
 var option3El = document.querySelector("#option3");
 var option4El = document.querySelector("#option4");
-var scoreInput = document.querySelector("#scoreinput");
-var question11El = document.querySelector(".question1");
-var question21El = document.querySelector(".question2");
-var question31El = document.querySelector(".question3");
-var question41El = document.querySelector(".question4");
-var question51El = document.querySelector(".question5");
+var questionEl = document.querySelector(".question");
+
 // set string variables to display answer outcomes
 var wrongAnswer = "Wrong!";
 var rightAnswer = "Correct!";
@@ -26,60 +19,77 @@ var timer = 180;
 var score = "";
 
 // Set questions into an array of objects to be able to iterate through them easily
+var i = 0;
 var questions = [
     {
-        //questionLocation: question1El,
-        question1: question1El, "What tag is required in all HTML documents, and is used to define the title?",
-        option1: option1El, "1. <body></body>",
-        option2: option2El, "2. <title></title>",
-        option3: option3El, "3. <head></head>",
-        option4: option4El, "4. <br></br>",
+        question: "What tag is required in all HTML documents, and is used to define the title?",
+        option1: "1. <body></body>",
+        option2: "2. <title></title>",
+        option3: "3. <head></head>",
+        option4: "4. <br></br>",
         correctAnswer: "2. <title></title>"
-      },
+    },
     {
-        //questionLocation: question2El,
-        question2: question2El, "The CSS link element must go inside the ____ section of an HTML document or page.",
-        option1: option1El, "1. Footer",
-        option2: option2El, "2. Head",
-        option3: option3El, "3. Paragraph",
-        option4: option4El, "4. Body",
+        question: "The CSS link element must go inside the ____ section of an HTML document or page.",
+        option1: "1. Footer",
+        option2: "2. Head",
+        option3: "3. Paragraph",
+        option4: "4. Body",
         correctAnswer: "2. Head"
-      },
+    },
     {
-        //questionLocation: question3El,
-        question3: question3El, "In JavaScript, what is a block of code called that is used to perform a specific task?",
-        option1: option1El, "1. Variable",
-        option2: option2El, "2. Declaration",
-        option3: option3El, "3. String",
-        option4: option4El, "4. Function",
+        question: "In JavaScript, what is a block of code called that is used to perform a specific task?",
+        option1: "1. Variable",
+        option2: "2. Declaration",
+        option3: "3. String",
+        option4: "4. Function",
         correctAnswer: "4. Function"
-      },
+    },
     {
-        //questionLocation: question4El,
-        question3: question4El, "What tag is used to define a hyperlink, or link to another page?",
-        option1: option1El, "1. <a>",
-        option2: option2El, "2. <blockquote>",
-        option3: option3El, "3. <strong>",
-        option4: option4El, "4. <em>",
+        question: "What tag is used to define a hyperlink, or link to another page?",
+        option1: "1. <a>",
+        option2: "2. <blockquote>",
+        option3: "3. <strong>",
+        option4: "4. <em>",
         correctAnswer: "1. <a>"
-      },
+    },
     {
-        //questionLocation: question5El,
-        question5: question5El, "What is the name of the statement that is used to exit or end a loop?",
-        option1: option1El, "1. Close statement",
-        option2: option2El, "2. Break statement",
-        option3: option3El, "3. Conditional statement",
-        option4: option4El, "4. Falter statement",
+        question: "What is the name of the statement that is used to exit or end a loop?",
+        option1: "1. Close statement",
+        option2: "2. Break statement",
+        option3: "3. Conditional statement",
+        option4: "4. Falter statement",
         correctAnswer: "2. Break statement"
-        }
+    }
 ];
 
-// on click event connected to an id in the HTML triggered when the first question is asked
-function startQuiz(){
-    startQuizEl.addEventListener("click", function () {
-    setTime();
-    setTimerText();
+function runQuiz() {
+    renderQuiz();
+    nextQuestionEl.addEventListener("click", function (event) {
+        event.preventDefault();
+        if (event.target.matches(".option")) {
+            for (var i = 0; i < questions.length; i++) {
+                if (timer === 0) {
+                    //***strop timer
+                    setTimerText();
+                    score = timer.textContent;
+                    window.location.href = "scores.html"
+                } else {
+                    renderPage(questions[i]);
+                }
+            }
+        }
     })
+};
+
+// on click event connected to an id in the HTML triggered when the first question is asked
+function renderQuiz() {
+    questionEl.textContent = questions[i].question
+    option1El.textContent = questions[i].option1
+    option2El.textContent = questions[i].option2
+    option3El.textContent = questions[i].option3
+    option4El.textContent = questions[i].option4
+    feedbackResponseEl.textContent = questions[i].correctAnswer
 };
 
 // set function to print timer text on the page
@@ -89,89 +99,51 @@ function setTimerText() {
 
 // set countdown function to run the time
 function setTime() {
-    var timerInterval = setInterval(function() {
-      if(count > 0){
-        timer--;
-        timeEl.textContent = timer;
-      }
-      if(secondsLeft === 0) {
-        setTimerText(timerInterval);
-      }
-  
-    }, 180);
-  }
-
-function answerFeedback(){
-    // on click event connected by id for next question
-    .addEventListener("click", function () {
-        // if you've selected an answer to the last question from the class "answers" the timer stops
-        if (questions[4]){ 
-            //stop timer;
-            setTimerText();
-            score = timer.textContent;
-        } 
-        if (questions.correctAnswer === true){
-            feedbackResponseEl.textContent = rightAnswer
-            } else (){
-                feedbackResponseEl.textContent = wrongAnswer
-                timer = timer - 15
-                setTimerText();
-            }   
-    });       
-};
-
-function runQuiz(){
-    startTimer();
-    for (var i = 0; i < questions.length; i++) {
-        if (timer === 0){
-            //strop timer
-            setTimerText();
-            score = timer.textContent;
-        } else(){
-            renderPage(questions[i]);
-            feedback();
+    var timerInterval = setInterval(function () {
+        if (count > 0) {
+            timer--;
+            timeEl.textContent = timer;
         }
-    }
+        if (secondsLeft === 0) {
+            setTimerText(timerInterval);
+        }
+
+    }, 180);
+}
+
+function renderPage() {
+    //*** set a next question element to id to encompass all the questions by class? */
+    //if (nextQuestionEl){
+    answerFeedback();
+    clearInterval();
+}
+
+function answerFeedback() {
+    // ***on click event connected how??? If you can select any button...
+    //*** set a next question element to id to encompass all the questions by class? */
+    nextQuestionEl.addEventListener("click", function () {
+        // if you've selected an answer to the last question from the class "answers" the timer stops
+        if (questions[4]) {
+            //***stop timer;
+            setTimerText();
+            score = timer.textContent;
+        }
+        if (questions.correctAnswer === true) {
+            feedbackResponseEl.textContent = rightAnswer
+        } else {
+            feedbackResponseEl.textContent = wrongAnswer;
+            timer = timer - 15;
+            setTimerText();
+        }
+    });
 };
 
-function renderPage()
-    if (nextQuestionEl){
-        clearInterval()
+runQuiz();
 
-    }
-        
-// on click event for final submission
-finalsubmitEl.addEventListener("click", function(event) {
-    event.preventDefault();
-    // set variable to collect value of initial input
-    var initials = initialsInput.value;
-    // redirect page to print text for collected initial input
-    //***append the score
-    submitInitialsEl.textContent = ((window.location.href = "scores.html"), initials + score);
- });
-
- // on click event for final submission
-goBacktEl.addEventListener("click", function(event) {
-    event.preventDefault();
-    // change windows to the start page
-    window.location.href = "index.html"
- });
-
- // on click event for final submission
-clearHighScoreEl.addEventListener("click", function(event) {
-    event.preventDefault();
-    // set variable for collected values of initial inputs
-    var initials = initialsInput.value;
-    // clear text for collected initial inputs
-    // ***figure out how to clear local storage?
-    submitInitialsEl.textContent = clearInterval(initials);
- });
-
-
-
-// *** store answers and initials in local storage
-
-
+// questions:
+// 1. Do I need to create more html files? per different page?
+// 2. How do I have code talk between html and js pages?
+// 3. how do I stop the timer?
 
 // function nextWindow()
 //     if (currentWindow === (window.location.href = "index.html")){
