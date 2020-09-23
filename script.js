@@ -1,7 +1,7 @@
 // Set variables to traverse the DOM and select by ID and Class
+//^var startQuizBttn = document.querySelector("#startquiz");
 var timerLocationEl = document.querySelector("#timerlocation");
 var nextQuestionEl = document.querySelector("#nextquestion");
-var submitBttn = document.querySelector("#submit");
 var InitialsInputEl = document.querySelector("#initialsinput");
 var feedbackResponseEl = document.querySelector("#feedbackresponse");
 var option1El = document.querySelector("#option1");
@@ -14,7 +14,9 @@ var questionEl = document.querySelector(".question");
 var wrongAnswer = "Wrong!";
 var rightAnswer = "Correct!";
 // set integer variable for the timer start count
-var timer = 180;
+var totalSeconds = 180;
+var secondsElapsed = 0;
+var interval;
 // set variable score to an empty string 
 var score = "";
 
@@ -63,19 +65,28 @@ var questions = [
     }
 ];
 
+// function startQuiz() {
+//     // seperate page??
+//     startQuizBttn.addEventListener("click", function () {
+//         startTimer();   
+//     })  
+// }
+
 function runQuiz() {
     renderQuiz();
     nextQuestionEl.addEventListener("click", function (event) {
         event.preventDefault();
         if (event.target.matches(".option")) {
             for (var i = 0; i < questions.length; i++) {
-                if (timer === 0) {
+                if (timer === 0 || questions[4]) {
                     //***strop timer
-                    setTimerText();
-                    score = timer.textContent;
-                    window.location.href = "scores.html"
+                    //setTimerText();
+                    //score = timer.textContent;
+                    //window.location.href = "scores.html"
                 } else {
-                    renderPage(questions[i]);
+                    answerFeedback();
+                    //clearInterval();
+                    renderQuiz();
                 }
             }
         }
@@ -92,52 +103,40 @@ function renderQuiz() {
     feedbackResponseEl.textContent = questions[i].correctAnswer
 };
 
-// set function to print timer text on the page
-function setTimerText() {
-    timerLocationEl.textContent = timer;
+function answerFeedback() {
+    if (questions[i].correctAnswer === true) {
+        feedbackResponseEl.textContent = rightAnswer
+    } else {
+        feedbackResponseEl.textContent = wrongAnswer;
+        //secondsElapsed =- 15;
+        //renderTime();
+    }
+};
+
+//set function to print timer text on the page
+function renderTime() {
+    timerLocationEl.textContent = secondsElapsed;
+    if (secondsElapsed >= totalSeconds) {
+        stopTimer();
+    }
 };
 
 // set countdown function to run the time
-function setTime() {
-    var timerInterval = setInterval(function () {
-        if (count > 0) {
-            timer--;
-            timeEl.textContent = timer;
-        }
-        if (secondsLeft === 0) {
-            setTimerText(timerInterval);
-        }
-
-    }, 180);
-}
-
-function renderPage() {
-    //*** set a next question element to id to encompass all the questions by class? */
-    //if (nextQuestionEl){
-    answerFeedback();
-    clearInterval();
-}
-
-function answerFeedback() {
-    // ***on click event connected how??? If you can select any button...
-    //*** set a next question element to id to encompass all the questions by class? */
-    nextQuestionEl.addEventListener("click", function () {
-        // if you've selected an answer to the last question from the class "answers" the timer stops
-        if (questions[4]) {
-            //***stop timer;
-            setTimerText();
-            score = timer.textContent;
-        }
-        if (questions.correctAnswer === true) {
-            feedbackResponseEl.textContent = rightAnswer
-        } else {
-            feedbackResponseEl.textContent = wrongAnswer;
-            timer = timer - 15;
-            setTimerText();
-        }
-    });
+function startTimer() {
+    if (totalSeconds > 0) {
+          interval = setInterval(function() {
+            secondsElapsed--;
+            renderTime();
+          }, 180);
 };
 
+function stopTimer() {
+    if (secondsElapsed = 0){
+    renderTime();
+    }   
+};
+   
+//startQuiz();
 runQuiz();
 
 // questions:
@@ -162,6 +161,19 @@ runQuiz();
 //             window.location.href = "resultsdone.html";
 //         } else if (currentWindow === (window.location.href = "resultsdone.html")){
 //             window.location.href = "scores.html";
+
+   
+// var timerInterval = setInterval(function () {
+//     if (count > 0) {
+//         timer--;
+//         timeEl.textContent = timer;
+//     }
+//     if (secondsLeft === 0) {
+//         renderTime(timerInterval);
+//     }
+
+// }, 180);
+// }
 
 //var nextQuestionEl = document.querySelector("#nextquestion");
 //var answerSelectEl = document.querySelector(".answerselect");
@@ -193,3 +205,4 @@ runQuiz();
 //when to take time from timer?
 //when to stop timer?
 //what to show for score?
+}

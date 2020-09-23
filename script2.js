@@ -2,6 +2,7 @@ var goBackBttn = document.querySelector("#goback");
 var clearHighScoreBttn = document.querySelector("#clearhighscore");
 var scoreLocation = document.querySelector("#scorelocation");
 var startQuizBttn = document.querySelector("#startquiz");
+var submitBttn = document.querySelector("#submit");
 
 // on click event for final submission
 submitBttn.addEventListener("click", function (event) {
@@ -43,10 +44,3 @@ function renderLastWinner(){
     var lastScore = localStorage.getItem("#scorelocation");
     scoreLocation.textContent = lastScore;
 }
-
-
-// seperate page??
-startQuizBttn.addEventListener("click", function () {
-    setTime();
-    setTimerText();
-})
