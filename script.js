@@ -16,13 +16,10 @@ var scoreLog = document.querySelector(".scorelog");
 var wrongAnswer = "Wrong!";
 var rightAnswer = "Correct!";
 
-// set integer variable for the timer start count
-var totalSeconds = 180;
-var secondsElapsed = 0;
-var interval;
-
 // set variable score to an empty string 
 var score = "";
+
+var timer = 0
 
 // Set questions into an array of objects to be able to iterate through them easily
 var i = 0;
@@ -62,47 +59,24 @@ startQuizBtn.addEventListener("click", function () {
 
 function runQuiz() {
     if(this.value !== questions[i].correctAnswer) {
-        //secondsElapsed =- 10;
+        timer =- 10;
         feedbackResponseEl.textContent = wrongAnswer;
     } else {
         feedbackResponseEl.textContent = rightAnswer;
     }
     i++;
-    console.log(questions[i]);
     if(i === questions.length) {
         questionCard.setAttribute("class", "hide");
         scoreCard.removeAttribute("class", "hide");
         scoreReport.textContent = "Your final score is " + score + ".";
-        //renderResults();
     } else {
     renderQuiz();
     }
-
-    // nextQuestionEl.addEventListener("click", function (event) {
-    //     event.preventDefault();
-    //     if (event.target.matches(".option")) {
-    //         for (var i = 0; i < questions.length; i++) {
-    //             if (secondsElapsed === 0 || questions[4]) {
-    //                 //***strop timer
-    //                 //renderTime();
-    //                 //score = secondsElapsed.textContent;
-    //                 //window.location.href = "scores.html"
-    //             } else {
-    //                 answerFeedback();
-    //                 //clearInterval();
-    //                 renderQuiz();
-    //             }
-    //         }
-    //     }
-    // })
 };
 
-// on click event connected to an id in the HTML triggered when the first question is asked
 function renderQuiz() {
     questionEl.textContent = questions[i].question
     optionEl.innerHTML = ""
-    //optionEl.textContent = questions[i].option
-    //feedbackResponseEl.textContent = questions[i].correctAnswer
     questions[i].options.forEach(function(option){
         var button = document.createElement("button");
         button.setAttribute("value", option);
@@ -111,35 +85,41 @@ function renderQuiz() {
         optionEl.appendChild(button);
         button.onclick = runQuiz;
     });
+};
 
 submitBtn.addEventListener("click", function () {
     scoreCard.setAttribute("class", "hide");
     highscoreCard.removeAttribute("class", "hide");
-    })
+})
 
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+        display.textContent = minutes + ":" + seconds;
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
 
-
-
-//function renderResults() {
-    //});
-
-
-
+window.onload = function () {
+    var oneMinute = 60,
+        display = document.querySelector('#timerlocation');
+    startTimer(oneMinute, display);
 };
 
-// function answerFeedback() {
-//     if (questions[i].correctAnswer === true) {
-//         feedbackResponseEl.textContent = rightAnswer
-//     } else {
-//         feedbackResponseEl.textContent = wrongAnswer;
-//         //secondsElapsed =- 15;
-//         //renderTime();
-//     }
-// };
+function stopTimer() {
+    if (secondsElapsed = 0){
+    renderTime();
+    }   
+};
 
 // //set function to print timer text on the page
 // function renderTime() {
-//     timerLocationEl.textContent = secondsElapsed;
+//     timerLocationEl.textContent = getFormattedSeconds();
 //     if (secondsElapsed >= totalSeconds) {
 //         stopTimer();
 //     }
@@ -152,82 +132,18 @@ submitBtn.addEventListener("click", function () {
 //             secondsElapsed--;
 //             renderTime();
 //           }, 180);
+//     }
 // };
 
-// function stopTimer() {
-//     if (secondsElapsed = 0){
-//     renderTime();
-//     }   
-// };
-   
-//startQuiz();
-// runQuiz();
-
-// questions:
-// Do I need to create more html files? per different page?
-// start page? & submit page
-// How do I have code talk between html and js pages?
-// not sure if timer is working...
-// storing winner information in local storage, appending winners
-
-// function nextWindow()
-//     if (currentWindow === (window.location.href = "index.html")){
-//         window.location.href = "question1.html";
-//         } else if (currentWindow === (window.location.href = "question1.html")){
-//             window.location.href = "question2.html";
-//         } else if (currentWindow === (window.location.href = "question2.html")){
-//             window.location.href = "question3.html";
-//         } else if (currentWindow === (window.location.href = "question3.html")){
-//             window.location.href = "question4.html";
-//         } else if (currentWindow === (window.location.href = "question4.html")){
-//             window.location.href = "question5.html";
-//         } else if (currentWindow === (window.location.href = "question5.html")){
-//             window.location.href = "results.html";
-//         } else if (currentWindow === (window.location.href = "results.html")){
-//             window.location.href = "resultsdone.html";
-//         } else if (currentWindow === (window.location.href = "resultsdone.html")){
-//             window.location.href = "scores.html";
-
-   
-// var timerInterval = setInterval(function () {
-//     if (count > 0) {
-//         timer--;
-//         timeEl.textContent = timer;
-//     }
-//     if (secondsLeft === 0) {
-//         renderTime(timerInterval);
-//     }
-
-// }, 180);
-// }
-
-//var nextQuestionEl = document.querySelector("#nextquestion");
-//var answerSelectEl = document.querySelector(".answerselect");
-
-// set timer to end when last question is answered or timer hits 0
-// if questions[5]
-
-// if statement for a timer to start and count down 
-// WHEN I answer a question
-// THEN I am presented with another question
-// if question is answered correctly provide correct answer response
-    // else statement for answering question incorrectly generates incorrect answer response
-    // time is subtracted from the clock
 
 
-// set new variable score to equal end time of timer
-// generate score on a new score page on another html
+// function getFormattedSeconds() {
+//     var secondsLeft = (totalSeconds - secondsElapsed) % 60;
+    
+//     return secondsLeft;
 
 
-// The computer needs to know:
-
-//what questions?
-//what answers?
-//what correct answers?
-//what to prompt for wrong answer?
-//what to prompt for right answer?
-//when to show next question?
-//when to start timer?
-//when to take time from timer?
-//when to stop timer?
-//what to show for score?
+// set integer variable for the timer start count
+// var totalSeconds = 180;
+// var secondsElapsed = 0;
+// var interval;
