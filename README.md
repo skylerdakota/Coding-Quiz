@@ -2,8 +2,8 @@
 
 [Site](https://skylerdakota.github.io/Coding-Quiz/)
 
-![Main Page](Assets/images/quizpage1.png)
-![Score Page](Assets/images/quizpage2.png)
+![Start Page](Assets/images/quizpage1.png)
+![Quiz Page](Assets/images/quizpage2.png)
 
 # 04 Web APIs: Code Quiz
 
